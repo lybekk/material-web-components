@@ -1,0 +1,42 @@
+{
+  "name": "offpim-mdc-theme-bundler",
+  "version": "1.0.0",
+  "description": "A separate repository for generating offPIM's Material Design Components (For web) theme",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lybekk/offPIM-mdc-theme-bundler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lybekk/offPIM-mdc-theme-bundler/issues"
+  },
+  "homepage": "https://github.com/lybekk/offPIM-mdc-theme-bundler#readme",
+  "dependencies": {
+    "@material/button": "^7.0.0",
+    "@material/ripple": "^7.0.0",
+    "@material/top-app-bar": "^7.0.0",
+    "material-components-web": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.1",
+    "extract-loader": "^5.1.0",
+    "file-loader": "^6.0.0",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.3",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
