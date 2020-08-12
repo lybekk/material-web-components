@@ -9,3 +9,6 @@ const foos = [].map.call(document.querySelectorAll('.mdc-button'), function(el) 
     el.unbounded = true;
     return new MDCRipple(el);
 });
+
+/* Instantiate ripple on list items */
+//const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(listItemEl));

@@ -20,8 +20,12 @@
   "homepage": "https://github.com/lybekk/offPIM-mdc-theme-bundler#readme",
   "dependencies": {
     "@material/button": "^7.0.0",
+    "@material/card": "^7.0.0",
+    "@material/layout-grid": "^7.0.0",
+    "@material/list": "^7.0.0",
     "@material/ripple": "^7.0.0",
     "@material/top-app-bar": "^7.0.0",
+    "@material/typography": "^7.0.0",
     "material-components-web": "^7.0.0"
   },
   "devDependencies": {
