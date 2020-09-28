@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="bundle.css">
+    <style>
+      .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        height: 10vh;
+        gap: 1rem;
+      }
+
+      .cards-container > div {
+        width: 25vw;
+      }
+    </style>
   </head>
   <body>
     <header class="mdc-top-app-bar">
         <div class="mdc-top-app-bar__row">
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>
-            <span class="mdc-top-app-bar__title">Page title</span>
+            <span class="mdc-top-app-bar__title">Material Web Compnents</span>
           </section>
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
             <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Favorite">favorite</button>
@@ -18,33 +30,84 @@
           </section>
         </div>
       </header>
-      <br>
-    <hr>
-        <button class="foo-button mdc-button">
-          <div class="mdc-button__ripple"></div>
-          <span class="mdc-button__label">Button</span>
-        </button>
-        <hr>
-        <button class="foo-button2 mdc-button mdc-button--raised">
-            <div class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">Button 2</span>
-          </button>
-          <hr>
-          <button class="mdc-button mdc-button--raised">
-            <div class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">Button 2</span>
-          </button>
-          <hr>
+      <main style="padding: 3vw;">
+      <div style="margin-top:5vw;"></div>
+      <h1>Main header <small style="opacity:.2;">h1</small></h1>
+      <p>Paragraph defaults to 'body1'</p>
 
-          <button class="foo-test mdc-button mdc-button--raised">
-            <div class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">Button 2</span>
-          </button>
-          <button class="foo-test mdc-button mdc-button--raised">
-            <div class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">Doesn't ripple</span>
-          </button>
+      <material-grid>
+        <material-grid-inner>
+            <material-grid-cell>
+                <material-card title="Buttons">
+                  <material-button label="Button component"></material-button>
+                  <material-button label="Button component (class: secondary)" secondary></material-button>
+                  <material-button flat label="Flat Button component (Fix: colors)"></material-button>
+                  <material-button label="Alert On click" onclick="alert('It works')"></material-button>
+                </material-card>
+            </material-grid-cell>
 
-        <script src="bundle.js" async></script>
+            <material-grid-cell>
+              <material-card title="List">
+                <ul class="mdc-list mdc-list--two-line">
+                  <li class="mdc-list-item" tabindex="0">
+                    <span class="mdc-list-item__ripple"></span>
+                    <span class="mdc-list-item__text">
+                      <span class="mdc-list-item__primary-text">Two-line item</span>
+                      <span class="mdc-list-item__secondary-text">Secondary text</span>
+                    </span>
+                  </li>
+                  <li class="mdc-list-item">
+                    <span class="mdc-list-item__ripple"></span>
+                    <span class="mdc-list-item__text">
+                      <span class="mdc-list-item__primary-text">Two-line item</span>
+                      <span class="mdc-list-item__secondary-text">Secondary text</span>
+                    </span>
+                  </li>
+                  <li class="mdc-list-item">
+                    <span class="mdc-list-item__ripple"></span>
+                    <span class="mdc-list-item__text">
+                      <span class="mdc-list-item__primary-text">Two-line item</span>
+                      <span class="mdc-list-item__secondary-text">Secondary text</span>
+                    </span>
+                  </li>
+                </ul>
+              </material-card>
+            </material-grid-cell>
+
+            <material-grid-cell>
+              <material-card title="Textfields">
+                <material-textfield label="Filled textfield"></material-textfield>
+                <material-textfield label="Outlined textfield" outlined></material-textfield>
+              </material-card>
+            </material-grid-cell>
+
+            <material-grid-cell>
+              <material-card outlined title="Outlined card">
+                <p>Text</p>
+              </material-card>
+            </material-grid-cell>
+
+            <material-grid-cell>
+              <material-card title="Radio buttons">
+                <material-radio label="A radio label" name ="its-id"></material-radio>
+                <material-radio label="Another one" name ="another-id"></material-radio>
+                <material-radio label="The third" name ="third-id"></material-radio>
+              </material-card>
+            </material-grid-cell>
+
+            <material-grid-cell>
+              <material-card title="Progress indicators">
+                <material-progress-linear></material-progress-linear>
+                <br>
+                <material-progress-circular></material-progress-circular>
+            </material-card>
+            </material-grid-cell>
+
+          </material-grid-inner>
+        </material-grid>
+
+
+      </main>
+    <script src="bundle.js" async></script>
   </body>
 </html>

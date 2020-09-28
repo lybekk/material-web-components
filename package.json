@@ -6,6 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
+    "docs:build": "documentation build app.js -f md -o docs/index.md",
+    "docs:dev": "documentation serve app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,12 +23,19 @@
   "dependencies": {
     "@material/button": "^7.0.0",
     "@material/card": "^7.0.0",
+    "@material/form-field": "^7.0.0",
     "@material/layout-grid": "^7.0.0",
     "@material/list": "^7.0.0",
+    "@material/progress-indicator": "^7.0.0",
+    "@material/radio": "^7.0.0",
     "@material/ripple": "^7.0.0",
+    "@material/textfield": "^7.0.0",
     "@material/top-app-bar": "^7.0.0",
     "@material/typography": "^7.0.0",
-    "material-components-web": "^7.0.0"
+    "material-components-web": "^7.0.0",
+    "material-design-icons": "^3.0.1",
+    "nord": "^0.2.1",
+    "svg-sprite": "^1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",

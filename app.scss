@@ -1,19 +1,152 @@
+@use "node_modules/nord/src/sass/nord.scss" as nord;
+
+$primary: nord.$nord1;
+$on-primary: nord.$nord6;
+$secondary: nord.$nord8;
+$on-secondary: nord.$nord3;
+$surface: nord.$nord2; // Used in I.E. card backgrounds
+$on-surface: nord.$nord6;
+$background: nord.$nord0;
+
 @use "@material/theme" with (
-  //$primary: #9c27b0,
-  $primary: teal,
-  $secondary: gray,
-  $background: #fff,
+  $primary: $primary,
+  $on-primary: $on-primary,
+  $secondary: $secondary,
+  $on-secondary: $on-secondary,
+  $surface: $surface, // Used in I.E. card backgrounds
+  $on-surface: $on-surface,
+  $background: pink, // Not sure where this is used
 );
-//@use "material-components-web";
-@use "@material/typography/mdc-typography";
+
 @use "@material/layout-grid/mdc-layout-grid";
+@use "@material/top-app-bar/mdc-top-app-bar";
+@use "@material/card";
+
+// Button
 @use '@material/button/mdc-button';
 @use '@material/button';
 @use "@material/icon-button";
-@use "@material/top-app-bar/mdc-top-app-bar";
-@use "@material/card";
+
+// List
 @use "@material/list";
 
-@include icon-button.core-styles;
+// Textfields
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
+
+// Radio buttons
+@use "@material/radio";
+@use "@material/form-field";
+
+// Progress indicators
+@use "@material/linear-progress";
+@use "@material/circular-progress/mdc-circular-progress";
+
 @include card.core-styles;
+@include icon-button.core-styles;
 @include list.core-styles;
+@include textfield.core-styles;
+@include radio.core-styles;
+@include form-field.core-styles;
+
+@include linear-progress.core-styles;
+@include linear-progress.bar-color($secondary);
+@include linear-progress.buffer-color($primary);
+
+@import "@material/typography/mdc-typography";
+@import "@material/elevation/mdc-elevation";
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Roboto';
+  margin: 0;
+  padding-top: 0.1px; // Prevent header h1 margin from pushing body down
+  background-color: $background;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: $on-surface;
+}
+
+h1 {
+  @include mdc-typography(headline1);
+}
+
+h2 {
+  @include mdc-typography(headline2);
+}
+
+h3 {
+  @include mdc-typography(headline3);
+}
+
+h4 {
+  @include mdc-typography(headline4);
+}
+
+h5 {
+  @include mdc-typography(headline5);
+}
+
+p {
+  @include mdc-typography(body1);
+}
+
+.secondary {
+  @include button.filled-accessible($secondary);
+  @include button.ink-color($on-secondary);
+}
+
+.mdc-top-app-bar {
+  @include mdc-elevation(4);
+}
+
+.mdc-card {
+  padding: 12px;
+  //width: 25vw;
+  @include mdc-elevation(2);
+}
+
+.mdc-text-field {
+  margin: .6rem;
+}
+
+.mdc-text-field--filled {
+  @include textfield.fill-color($primary) ;
+}
+
+.mdc-list-item {
+  @include list.item-primary-text-ink-color($on-surface);
+  @include list.item-secondary-text-ink-color( darken($on-surface, 20%) )
+}
+
+.mdc-form-field > label {
+  color: $on-surface;
+}
+
+.mdc-circular-progress__determinate-circle, 
+.mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: $secondary
+}
+
+/* Custom Web Components */
+
+material-button {
+  margin: .4rem;
+  margin-bottom: .8rem;
+}
+
+material-card > h4 {
+  margin: .2rem;
+}

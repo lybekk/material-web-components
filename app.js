@@ -1,14 +1,20 @@
 import {MDCRipple} from '@material/ripple/index';
 import {MDCTopAppBar} from '@material/top-app-bar';
+import {MDCTextField} from '@material/textfield';
 
 // Instantiation
 const topAppBarElement = document.querySelector('.mdc-top-app-bar');
 const topAppBar = new MDCTopAppBar(topAppBarElement);
 
-const foos = [].map.call(document.querySelectorAll('.mdc-button'), function(el) {
-    el.unbounded = true;
-    return new MDCRipple(el);
-});
-
-/* Instantiate ripple on list items */
-//const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(listItemEl));
+/**
+ * Components
+ */
+import './components/materialTextfield'
+import './components/materialButton'
+import './components/materialCard'
+import './components/materialRadio'
+import './components/materialGrid'
+import './components/materialGridInner'
+import './components/materialGridCell'
+import './components/materialProgressLinear'
+import './components/materialProgressCircular'
