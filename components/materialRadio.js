@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * Deprecated in favor of the official Web components
+ */
+
 import {MDCFormField} from '@material/form-field';
 import {MDCRadio} from '@material/radio';
 
@@ -28,6 +32,8 @@ template.innerHTML = `
 class MaterialRadio extends HTMLElement {
   constructor() {
     super();
+  }
+  connectedCallback() {
     this.appendChild(template.content.cloneNode(true))
     const nameAttribute = this.getAttribute("name")
     const input = this.querySelector('input')
@@ -35,11 +41,18 @@ class MaterialRadio extends HTMLElement {
     const label = this.querySelector('label')
     label.innerText = this.getAttribute("label")
     label.setAttribute('for', nameAttribute)
-  }
-  connectedCallback() {
-    const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
-    const radio = new MDCRadio(document.querySelector('.mdc-radio'));
+
+    const formField = new MDCFormField(this.querySelector('.mdc-form-field'));
+    const radio = new MDCRadio(this.querySelector('.mdc-radio'));
     formField.input = radio;
+
+    if (this.hasAttribute('disabled')) {
+      radio.disabled = true
+      label.setAttribute('disabled', '')
+    }
+    if (this.hasAttribute('checked')) {
+      radio.checked = true
+    }
   }
 }
 customElements.define('material-radio', MaterialRadio);

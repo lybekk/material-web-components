@@ -1,82 +1,59 @@
 @use "node_modules/nord/src/sass/nord.scss" as nord;
 
-$primary: nord.$nord1;
+$primary: nord.$nord0;
 $on-primary: nord.$nord6;
 $secondary: nord.$nord8;
 $on-secondary: nord.$nord3;
-$surface: nord.$nord2; // Used in I.E. card backgrounds
-$on-surface: nord.$nord6;
+$surface: nord.$nord1; // Used in I.E. cards, sheets, menu backgrounds
+$on-surface: nord.$nord4;
+$error: nord.$nord11;
 $background: nord.$nord0;
 
+/* for custom components */
 @use "@material/theme" with (
   $primary: $primary,
   $on-primary: $on-primary,
   $secondary: $secondary,
   $on-secondary: $on-secondary,
-  $surface: $surface, // Used in I.E. card backgrounds
+  $surface: $surface,
   $on-surface: $on-surface,
+  $error: $error,
   $background: pink, // Not sure where this is used
 );
-
 @use "@material/layout-grid/mdc-layout-grid";
-@use "@material/top-app-bar/mdc-top-app-bar";
 @use "@material/card";
-
-// Button
-@use '@material/button/mdc-button';
-@use '@material/button';
-@use "@material/icon-button";
-
-// List
-@use "@material/list";
-
-// Textfields
-@use "@material/floating-label/mdc-floating-label";
-@use "@material/line-ripple/mdc-line-ripple";
-@use "@material/notched-outline/mdc-notched-outline";
-@use "@material/textfield";
-
-// Radio buttons
-@use "@material/radio";
-@use "@material/form-field";
-
-// Progress indicators
-@use "@material/linear-progress";
-@use "@material/circular-progress/mdc-circular-progress";
-
-@include card.core-styles;
-@include icon-button.core-styles;
-@include list.core-styles;
-@include textfield.core-styles;
-@include radio.core-styles;
-@include form-field.core-styles;
-
-@include linear-progress.core-styles;
-@include linear-progress.bar-color($secondary);
-@include linear-progress.buffer-color($primary);
-
 @import "@material/typography/mdc-typography";
-@import "@material/elevation/mdc-elevation";
+@include card.core-styles;
 
-html, body {
-  min-height: 100%;
+/*
+ * Material Web Components
+ * https://github.com/material-components/material-components-web-components
+ */
+
+/*
+CSS selectors may be used to override global theme properties or component properties for certain components.
+
+mwc-button.action {
+  --mdc-theme-primary: red;
 }
+*/
 
-body {
-  font-family: 'Roboto';
-  margin: 0;
-  padding-top: 0.1px; // Prevent header h1 margin from pushing body down
-  background-color: $background;
-}
+html {
+  --mdc-theme-primary: #{$primary};
+  --mdc-theme-secondary: #{$secondary};
+  --mdc-theme-surface: #{$surface};
+  --mdc-theme-background: #{$background};
+  --mdc-theme-on-primary: #{$on-primary};
+  --mdc-theme-on-secondary: #{$on-secondary};
+  --mdc-theme-on-surface: #{$on-surface};
+  --mdc-theme-text-icon-on-background: #{$on-surface};	 // Color of the graphic icon (if graphic is text icon).
+  --mdc-theme-text-primary-on-background: #{$on-surface};	// Color of the primary text if not activated.
+  --mdc-theme-text-secondary-on-background: #{$on-surface}; // Color of the secondary text if not activated.
+  --mdc-theme-hint-on-background: #{$on-surface};	// Color of the meta (if is text or text icon).
+  --mdc-radio-unchecked-color: #{$on-surface};
+  background-color: $background; // Not part of material spec. 
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  color: $on-surface;
+  --mdc-dialog-heading-ink-color: #{$on-surface};
 }
 
 h1 {
@@ -103,20 +80,71 @@ p {
   @include mdc-typography(body1);
 }
 
-.secondary {
-  @include button.filled-accessible($secondary);
-  @include button.ink-color($on-secondary);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+p {
+  color: $on-surface;
 }
 
-.mdc-top-app-bar {
-  @include mdc-elevation(4);
+mwc-button {
+  --mdc-theme-primary: #{$secondary};
+  --mdc-theme-on-primary: #{$surface};
 }
+
+mwc-formfield {
+  display: block; // For interactive radio label
+}
+
+mwc-textfield {
+  --mdc-theme-primary: #{$secondary};
+  --mdc-text-field-fill-color: #{$primary};
+  --mdc-text-field-ink-color: #{$on-primary}; // Input color
+  --mdc-text-field-label-ink-color: #{ darken($on-primary, 40%) }; // Help text etc.
+  --mdc-text-field-outlined-idle-border-color: #{$on-surface};
+}
+
+mwc-linear-progress {
+  --mdc-theme-primary: #{$secondary};
+  --mdc-linear-progress-buffer-color: #{$on-secondary};
+  --mdc-linear-progress-buffering-dots-image: /* Note: all that was changed from default was "fill='slategray'" */
+    url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' enable-background='new 0 0 5 2' xml:space='preserve' viewBox='0 0 5 2' preserveAspectRatio='none slice'%3E%3Ccircle cx='1' cy='1' r='1' fill='slategray'/%3E%3C/svg%3E");
+}
+
+mwc-circular-progress {
+  --mdc-theme-primary: #{$secondary};
+}
+
+/* TODO: test for secondary theme and/or secondary/accent */
+.secondary-colors{
+  --mdc-theme-primary:darkgreen;
+  --mdc-theme-on-primary:aqua;
+  --mdc-button-disabled-fill-color:darkseagreen;
+  --mdc-button-disabled-ink-color:aliceblue;
+}
+
+/*
+ * Used in custom made components
+ */
 
 .mdc-card {
   padding: 12px;
-  //width: 25vw;
-  @include mdc-elevation(2);
 }
+
+material-card > h4 {
+  margin: .2rem;
+}
+
+
+/*
+  Refactor the below into the above
+*/
+
+/*
 
 .mdc-text-field {
   margin: .6rem;
@@ -126,13 +154,16 @@ p {
   @include textfield.fill-color($primary) ;
 }
 
-.mdc-list-item {
-  @include list.item-primary-text-ink-color($on-surface);
-  @include list.item-secondary-text-ink-color( darken($on-surface, 20%) )
+.mdc-form-field > label {
+  color: $on-surface;
 }
 
 .mdc-form-field > label {
   color: $on-surface;
+}
+
+label[disabled] {
+  color: darken($on-surface, 40%)
 }
 
 .mdc-circular-progress__determinate-circle, 
@@ -140,13 +171,25 @@ p {
   stroke: $secondary
 }
 
-/* Custom Web Components */
+.mdc-button:not(.mdc-button--raised) {
+  @include button.ink-color($on-surface);
+}
+
 
 material-button {
   margin: .4rem;
   margin-bottom: .8rem;
 }
 
-material-card > h4 {
-  margin: .2rem;
-}
+*/
+
+/*
+styled lists
+  #styled {
+    --mdc-theme-primary: red;
+    --mdc-list-vertical-padding: 0px;
+    --mdc-list-side-padding: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+*/

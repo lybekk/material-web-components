@@ -1,113 +1,153 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="bundle.css">
+    <link rel="stylesheet" href="dist/bundle.css">
     <style>
+      html, body {
+        min-height: 100%;
+      }
       .cards-container {
         display: flex;
         flex-wrap: wrap;
         height: 10vh;
         gap: 1rem;
       }
-
       .cards-container > div {
         width: 25vw;
+      }
+      mwc-button {
+        margin: .2rem;
+      }
+      mwc-textfield {
+        margin: .2rem;
       }
     </style>
   </head>
   <body>
-    <header class="mdc-top-app-bar">
-        <div class="mdc-top-app-bar__row">
-          <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>
-            <span class="mdc-top-app-bar__title">Material Web Compnents</span>
-          </section>
-          <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Favorite">favorite</button>
-            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search</button>
-            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Options">more_vert</button>
-          </section>
-        </div>
-      </header>
-      <main style="padding: 3vw;">
-      <div style="margin-top:5vw;"></div>
-      <h1>Main header <small style="opacity:.2;">h1</small></h1>
-      <p>Paragraph defaults to 'body1'</p>
 
+    <mwc-top-app-bar>
+      <mwc-icon-button icon="menu" slot="navigationIcon"></mwc-icon-button>
+      <div slot="title">Material Web Components</div>
+      <mwc-icon-button icon="file_download" slot="actionItems"></mwc-icon-button>
+      <mwc-icon-button icon="print" slot="actionItems"></mwc-icon-button>
+      <mwc-icon-button icon="favorite" slot="actionItems"></mwc-icon-button>
+      <div><!-- content --></div>
+    </mwc-top-app-bar>
+    <h1>Main header <small style="opacity:.2;">h1</small></h1>
+    <p>Paragraph defaults to 'body1'</p>
+
+      <main style="padding: 3vw;">
       <material-grid>
         <material-grid-inner>
             <material-grid-cell>
                 <material-card title="Buttons">
-                  <material-button label="Button component"></material-button>
-                  <material-button label="Button component (class: secondary)" secondary></material-button>
-                  <material-button flat label="Flat Button component (Fix: colors)"></material-button>
-                  <material-button label="Alert On click" onclick="alert('It works')"></material-button>
+                  <mwc-button label="standard"></mwc-button>
+                  <mwc-button label="standard" icon="code"></mwc-button>
+                  <mwc-button outlined label="outlined"></mwc-button>
+                  <mwc-button outlined label="outlined" icon="code"></mwc-button>
+                  <mwc-button raised label="raised"></mwc-button>
+                  <mwc-button raised label="raised" icon="code"></mwc-button>
+                  <mwc-button unelevated label="unelevated"></mwc-button>
+                  <mwc-button unelevated label="unelevated" icon="code"></mwc-button>
+                  <mwc-button dense unelevated label="dense"></mwc-button>
+                  <mwc-button dense unelevated label="dense" icon="code"></mwc-button>
+                  <mwc-button label="trailing icon" icon="code" trailingIcon></mwc-button>
+                  <mwc-button disabled label="disabled"></mwc-button>
+                  <mwc-button disabled label="disabled" icon="code"></mwc-button>
+                  <br>
+                  <p>TODO: Add secondary color button</p>
+                  <mwc-button label="Alert On click" onclick="alert('It works')"></mwc-button>
                 </material-card>
             </material-grid-cell>
 
             <material-grid-cell>
               <material-card title="List">
-                <ul class="mdc-list mdc-list--two-line">
-                  <li class="mdc-list-item" tabindex="0">
-                    <span class="mdc-list-item__ripple"></span>
-                    <span class="mdc-list-item__text">
-                      <span class="mdc-list-item__primary-text">Two-line item</span>
-                      <span class="mdc-list-item__secondary-text">Secondary text</span>
-                    </span>
-                  </li>
-                  <li class="mdc-list-item">
-                    <span class="mdc-list-item__ripple"></span>
-                    <span class="mdc-list-item__text">
-                      <span class="mdc-list-item__primary-text">Two-line item</span>
-                      <span class="mdc-list-item__secondary-text">Secondary text</span>
-                    </span>
-                  </li>
-                  <li class="mdc-list-item">
-                    <span class="mdc-list-item__ripple"></span>
-                    <span class="mdc-list-item__text">
-                      <span class="mdc-list-item__primary-text">Two-line item</span>
-                      <span class="mdc-list-item__secondary-text">Secondary text</span>
-                    </span>
-                  </li>
-                </ul>
+                <mwc-list activatable>
+                  <mwc-list-item>Item 0</mwc-list-item>
+                  <mwc-list-item selected activated>Item 1</mwc-list-item>
+                  <mwc-list-item>Item 2</mwc-list-item>
+                  <mwc-list-item twoline>
+                    <span>Item 1</span>
+                    <span slot="secondary">Secondary line</span>
+                  </mwc-list-item>
+                  <mwc-list-item>Item 3</mwc-list-item>
+                  <li divider padded role="separator"></li>
+                  <mwc-list-item hasMeta>
+                    <span>Location A</span>
+                    <mwc-icon slot="meta">info</mwc-icon>
+                  </mwc-list-item>
+                </mwc-list>
               </material-card>
             </material-grid-cell>
 
             <material-grid-cell>
               <material-card title="Textfields">
-                <material-textfield label="Filled textfield"></material-textfield>
-                <material-textfield label="Outlined textfield" outlined></material-textfield>
+                <mwc-textfield label="Filled textfield"></mwc-textfield>
+                <mwc-textfield outlined label="Outlined textfield"></mwc-textfield>
               </material-card>
             </material-grid-cell>
-
-            <material-grid-cell>
-              <material-card outlined title="Outlined card">
-                <p>Text</p>
-              </material-card>
-            </material-grid-cell>
-
+            
             <material-grid-cell>
               <material-card title="Radio buttons">
-                <material-radio label="A radio label" name ="its-id"></material-radio>
-                <material-radio label="Another one" name ="another-id"></material-radio>
-                <material-radio label="The third" name ="third-id"></material-radio>
+                <mwc-formfield label="Home">
+                  <mwc-radio name="location"></mwc-radio>
+                </mwc-formfield>
+                <mwc-formfield label="Work">
+                  <mwc-radio name="location"></mwc-radio>
+                </mwc-formfield>
+                <mwc-formfield label="Disabled">
+                  <mwc-radio disabled name="location"></mwc-radio>
+                </mwc-formfield>
               </material-card>
             </material-grid-cell>
 
             <material-grid-cell>
               <material-card title="Progress indicators">
-                <material-progress-linear></material-progress-linear>
-                <br>
-                <material-progress-circular></material-progress-circular>
+                <p>Determinate</p>
+                <mwc-linear-progress progress="0.5"></mwc-linear-progress>
+                <p>Indeterminate</p>
+                <mwc-linear-progress indeterminate></mwc-linear-progress>
+                <p>Determinate buffer</p>
+                <mwc-linear-progress progress="0.25" buffer="0.5"></mwc-linear-progress>
+                <p>Determinate</p>
+                <mwc-circular-progress progress="0.7"></mwc-circular-progress>
+                <p>Indeterminate</p>
+                <mwc-circular-progress indeterminate></mwc-circular-progress>
             </material-card>
+            </material-grid-cell>
+
+            <material-grid-cell>
+              <material-card title="Dialog">
+                <mwc-button raised label="Open dialog" onclick="openDialog()"></mwc-button>
+                <mwc-dialog id="dialog" heading="An open dialog">
+                  <p>Dialog is now open, as expected.</p>
+                  <mwc-button
+                      slot="primaryAction"
+                      dialogAction="discard">
+                    Discard
+                  </mwc-button>
+                  <mwc-button
+                      slot="secondaryAction"
+                      dialogAction="cancel">
+                    Cancel
+                  </mwc-button>
+                </mwc-dialog>
+              </material-card>
             </material-grid-cell>
 
           </material-grid-inner>
         </material-grid>
 
-
       </main>
-    <script src="bundle.js" async></script>
+    <script src="dist/bundle.js" async></script>
+    <script src="dist/materialComponents.js" async></script>
+    <script>
+      const openDialog = () => {
+        const dialog = document.querySelector('#dialog');
+        dialog.setAttribute('open', '')
+      }
+    </script>
   </body>
 </html>
